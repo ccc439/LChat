@@ -1,0 +1,98 @@
+# ============================================
+# Visual Studio
+# ============================================
+.vs/
+*.suo
+*.user
+*.userosscache
+*.sln.docstates
+*.vcxproj.user
+
+# Build directories
+Debug/
+Release/
+x64/
+x86/
+bin/
+obj/
+build/
+
+# Visual Studio build output
+*.exe
+*.pdb
+*.ilk
+*.exp
+*.lib
+*.tlog
+*.lastbuildstate
+*.manifest
+*.embed.manifest
+*.intermediate.manifest
+
+# ============================================
+# Qt
+# ============================================
+.qtcreator/
+*.pro.user
+*.pro.user.*
+Makefile
+Makefile.*
+*.o
+moc_*.cpp
+ui_*.h
+qrc_*.cpp
+*_resource.rc
+
+# Qt build directories
+build-*/
+*-build-*/
+
+# ============================================
+# Node.js
+# ============================================
+node_modules/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# ============================================
+# IDE
+# ============================================
+.idea/
+*.swp
+*.swo
+*~
+.DS_Store
+
+# ============================================
+# Logs and temporary files
+# ============================================
+*.log
+*.tmp
+*.temp
+Thumbs.db
+
+# ============================================
+# Environment and config files with sensitive data
+# ============================================
+.env
+.env.local
+.env.*.local
+
+# Keep example config files but ignore actual configs
+# !config.ini.example
+# !config.json.example
+
+# ============================================
+# Protocol buffer generated files (optional - uncomment if needed)
+# ============================================
+# *.pb.cc
+# *.pb.h
+# *.grpc.pb.cc
+# *.grpc.pb.h
+
+# ============================================
+# Package manager files (optional)
+# ============================================
+package-lock.json
+yarn.lock
