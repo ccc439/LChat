@@ -1,0 +1,423 @@
+/* errorMsg_label属性 */
+#errorMsg_label[state='normal']{
+    color : green;
+}
+
+#errorMsg_label[state='error']{
+    color : red;
+}
+
+/**/
+#search_widget {
+    background-color: rgb(30, 30, 30);  /* 深灰色背景 */
+}
+
+#search_edit {
+    border: 2px solid #3a3a3a;  /* 深灰色边框 */
+    background-color: rgb(45, 45, 45);  /* 建议添加输入框背景色 */
+    color: #ffffff;  /* 白色文字 */
+}
+
+#chat_user_widget {
+    background-color: rgb(20, 20, 20);  /* 更深的黑色背景 */
+}
+
+#chat_user_list {
+    background-color: rgb(30, 30, 30);  /* 深灰色背景 */
+    border: none;
+    color: #ffffff;  /* 白色文字 */
+}
+
+#chat_user_list::item {
+    color: #ffffff;  /* 列表项文字颜色 */
+}
+
+#chat_user_list::item:selected {
+    background-color: #404040;  /* 深灰色选中状态 */
+    border: none;
+    outline: none;
+    color: #ffffff;  /* 选中项文字颜色 */
+}
+
+#chat_user_list::item:hover {
+    background-color: #4a4a4a;  /* 中等灰色悬停效果 */
+    border: none;
+    outline: none;
+    color: #ffffff;  /* 悬停项文字颜色 */
+}
+
+#chat_user_list::focus {
+    border: none;
+    outline: none;
+}
+
+/**/
+ChatUserWid {
+    background-color:rgb(247,247,247);
+    border: none;
+}
+
+#user_chat_label{
+    color:rgb(153,153,153);
+    font-size: 12px;
+    font-family: "Microsoft YaHei";
+}
+
+#user_name_label{
+    color:rgb(0,127,255);
+    font-size: 14px;
+    font-weight: normal;
+    font-family: "Microsoft YaHei";
+}
+
+#time_widget #time_label{
+   color:rgb(140,140,140);
+   font-size: 12px;
+   font-family: "Microsoft YaHei";
+}
+
+QScrollBar:vertical {
+    background: transparent; /* 将轨道背景设置为透明 */
+    width: 8px; /* 滚动条宽度，根据需要调整 */
+    margin: 0px; /* 移除滚动条与滑块之间的间距 */
+}
+
+QScrollBar::handle:vertical {
+    background: rgb(173,170,169); /* 滑块颜色 */
+    min-height: 10px; /* 滑块最小高度，根据需要调整 */
+    border-radius: 4px; /* 滑块边缘圆角，调整以形成椭圆形状 */
+}
+
+QScrollBar::add-line:vertical, QScrollBar::sub-line:vertical {
+    height: 0px; /* 移除上下按钮 */
+    border: none; /* 移除边框 */
+    background: transparent; /* 背景透明 */
+}
+
+QScrollBar::add-page:vertical, QScrollBar::sub-page:vertical {
+    background: none; /* 页面滚动部分背景透明 */
+}
+
+#chat_user_name{
+    color:rgb(153,153,153);
+    font-size:14px;
+    font-family:"Microsoft YaHei";
+}
+
+/**/
+#search_edit {
+    border: 2px solid #3a3a3a;
+    background-color: #2b2b2b;
+    color: #e0e0e0;
+}
+
+/* 搜索框列表*/
+#search_list {
+    background-color: #2b2b2b;
+    border: none;
+}
+
+#search_list::item:selected {
+    background-color: #404040;
+    border: none;
+    outline: none;
+    color: #ffffff;
+}
+
+#search_list::item:hover {
+    background-color: #3a3a3a;
+    border: none;
+    outline: none;
+    color: #ffffff;
+}
+
+#search_list::focus {
+    border: none;
+    outline: none;
+}
+
+#invalid_item {
+    background-color: #333333;
+    border: none;
+    color: #808080;
+}
+
+#add_tip {
+    border-image: url(:/res/addtip.png);
+}
+
+#right_tip {
+    border-image: url(:/res/right_tip.png);
+}
+
+#message_tip {
+    text-align: center;
+    font-family: "Microsoft YaHei";
+    font-size: 12pt;
+    color: #e0e0e0;
+}
+
+/*聊天界面背景色*/
+#chat_bg{
+    background: rgb(25,33,48);
+}
+
+#chat_area{
+    border: none;
+}
+
+
+/*applyfriend*/
+#ApplyFriend{
+    border: 1px solid #32424a;
+    font-size: 14px;
+    background: #1e2b32;
+}
+
+#scrollArea{
+    background: #1e2b32;
+    border: none;
+}
+
+#scrollcontent{
+     background: #1e2b32;
+}
+
+#scrollcontent #apply_lb{
+    font-family: "Microsoft YaHei";
+    font-size: 16px;
+    font-weight: normal;
+    color: #e6e9ee;
+}
+
+#apply_wid QLabel{
+    color: #9aa9b2;
+    font-size: 14px;
+    font-family: "Microsoft YaHei";
+    height: 25px;
+}
+
+#apply_wid #name_ed, #apply_wid #back_ed{
+    border: 1px solid #32424a;
+    font-size: 14px;
+    font-family: "Microsoft YaHei";
+    background: #0f1a1f;
+    color: #e6e9ee;
+    selection-background-color: #264d5c;
+    padding: 2px 4px;
+}
+
+#apply_wid #name_ed:focus, #apply_wid #back_ed:focus{
+    border: 1px solid #2d6d7a;
+}
+
+#apply_wid #lb_ed {
+       border: none;
+       font-size: 14px;
+       font-family: "Microsoft YaHei";
+       background: #0f1a1f;
+       color: #e6e9ee;
+       padding: 2px 4px;
+}
+
+#apply_wid #more_lb{
+    border-image: url(:/res/arowdown.png);
+}
+
+#input_tip_wid {
+    background: #1d3842;
+    color: #cbdbe6;
+    border: 1px solid #2d5b68;
+    border-radius: 4px;
+}
+/*标签*/
+#apply_wid #tipslb[state='normal'] {
+    padding: 2px;
+    background: #e1e1e1;
+    color: #1e1e1e;
+    border-radius: 10px;
+}
+
+#apply_wid #tipslb[state='hover'] {
+    padding: 2px;
+    background: #e1e1e1;
+    color: #1e1e1e;
+    border-radius: 10px;
+}
+
+#apply_wid #tipslb[state='pressed'] {
+    padding: 2px;
+    background: #e1e1e1;
+    color: #48bf56;
+    border-radius: 10px;
+}
+
+#apply_wid #tipslb[state='selected_normal'] {
+    padding: 2px;
+    background: #e1e1e1;
+    color: #48bf56;
+    border-radius: 10px;
+}
+
+#apply_wid #tipslb[state='selected_hover'] {
+    padding: 2px;
+    background: #e1e1e1;
+    color: #48bf56;
+    border-radius: 10px;
+}
+
+#apply_wid #tipslb[state='selected_pressed'] {
+    padding: 2px;
+    background: #e1e1e1;
+    color: #1e1e1e;
+    border-radius: 10px;
+}
+/*标签*/
+#ApplyFriend #FriendLabel {
+    border-radius: 12px;
+    padding: 2px 8px;
+}
+
+#apply_wid #tip_lb {
+    padding-left: 4px;
+    color: #8f9ea8;
+    font-size: 14px;
+    font-family: "Microsoft YaHei";
+}
+
+#gridWidget {
+   background: #0f1a1f;
+   border: 1px solid #32424a;
+}
+
+/**/
+#con_user_list {
+    background-color: #1e1e1e;
+    border: none;
+}
+
+#con_user_list::item:selected {
+    background-color: #404040;
+    border: none;
+    outline: none;
+}
+
+#con_user_list::item:hover {
+    background-color: #2d2d2d;
+    border: none;
+    outline: none;
+}
+
+#con_user_list::focus {
+    border: none;
+    outline: none;
+}
+
+#GroupTipItem {
+    background-color: #2b2b2b;
+    border: none;
+}
+
+#GroupTipItem QLabel{
+    color: #e0e0e0;
+    font-size: 12px;
+    font-family: "Microsoft YaHei";
+    border: none;
+}
+
+#new_friend_item {
+     border-bottom: 1px solid #3a3a3a;
+}
+
+#LineItem {
+    background-color: #1e1e1e;
+    border: none;
+}
+
+/* 好友申请标签 */
+#friend_apply_lb {
+    font-family: "Microsoft YaHei";
+    font-size: 18px;
+    font-weight: normal;
+    color: #e0e0e0;  /* 添加文字颜色 */
+}
+
+/* 好友申请窗口 */
+#friend_apply_wid {
+    background-color: #1e1e1e;  /* 深色背景 */
+    border-bottom: 1px solid #3a3a3a;  /* 深色边框 */
+}
+
+/* 申请好友列表容器 */
+#apply_friend_list {
+    background-color: #1e1e1e;  /* 深色背景 */
+    border-left: 1px solid #3a3a3a;  /* 深色边框 */
+    border-top: none;
+    border-right: none;
+    border-bottom: none;
+}
+
+/* 申请好友项 */
+ApplyFriendItem {
+    background-color: #1e1e1e;  /* 深色背景 */
+    border-bottom: 2px solid #333333;  /* 深色分割线 */
+}
+
+/* 申请好友项悬停效果 */
+ApplyFriendItem:hover {
+    background-color: #2d2d2d;  /* 悬停时稍亮 */
+}
+
+/* 用户聊天标签（申请描述文字） */
+ApplyFriendItem #user_chat_lb {
+    color: #b0b0b0;  /* 浅灰色文字 */
+    font-size: 14px;
+    font-family: "Microsoft YaHei";
+}
+
+/* 添加按钮 - 正常状态 */
+ApplyFriendItem #addBtn[state='normal'] {
+    background-color: #3a3a3a;  /* 深色按钮背景 */
+    color: #4a9eff;  /* 蓝色文字 */
+    font-size: 16px;
+    font-family: "Microsoft YaHei";
+    border-radius: 20px;
+    border: none;  /* 移除边框 */
+}
+
+/* 添加按钮 - 悬停状态 */
+ApplyFriendItem #addBtn[state='hover'] {
+    background-color: #4a4a4a;  /* 悬停时稍亮 */
+    color: #7ab8ff;  /* 亮蓝色 */
+    font-size: 16px;
+    font-family: "Microsoft YaHei";
+    border-radius: 20px;
+    border: none;
+}
+
+/* 添加按钮 - 按下状态 */
+ApplyFriendItem #addBtn[state='press'] {
+    background-color: #555555;  /* 按下时更深 */
+    color: #2d7aff;  /* 深蓝色 */
+    font-size: 16px;
+    font-family: "Microsoft YaHei";
+    border-radius: 20px;
+    border: none;
+}
+
+#already_add_lb{
+    color:rgb(153,153,153);
+    font-size: 12px;
+    font-family: "Microsoft YaHei";
+}
+
+#user_name_lb{
+    color:#4a9eff;
+    font-size: 16px;
+    font-weight: normal;
+    font-family: "Microsoft YaHei";
+}
+
+#red_point{
+    border-image:url(:/res/red_point.png);
+}
