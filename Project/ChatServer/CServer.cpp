@@ -1,4 +1,4 @@
-#include "CServer.h"
+ï»¿#include "CServer.h"
 #include <iostream>
 #include "AsioIOServicePool.h"
 #include "UserMgr.h"
@@ -27,15 +27,16 @@ void CServer::HandleAccept(shared_ptr<CSession> new_session, const boost::system
 }
 
 void CServer::StartAccept() {
-	auto& io_context = AsioIOServicePool::GetInstance()->GetIOService();
-	shared_ptr<CSession> new_session = make_shared<CSession>(io_context, this);
-	_acceptor.async_accept(new_session->GetSocket(), std::bind(&CServer::HandleAccept, this, new_session, placeholders::_1));
+	for (int i = 0; i < 10; ++i) {
+		auto& io_context = AsioIOServicePool::GetInstance()->GetIOService();
+		shared_ptr<CSession> new_session = make_shared<CSession>(io_context, this);
+		_acceptor.async_accept(new_session->GetSocket(), std::bind(&CServer::HandleAccept, this, new_session, placeholders::_1));
+	}
 }
 
 void CServer::ClearSession(std::string uuid) {
 
 	if (_sessions.find(uuid) != _sessions.end()) {
-		//ÒÆ³ýÓÃ»§ºÍsessionµÄ¹ØÁª
 		UserMgr::GetInstance()->RmvUserSession(_sessions[uuid]->GetUserId());
 	}
 

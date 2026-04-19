@@ -120,15 +120,17 @@ void CSession::AsyncReadBody(int total_len)
 void CSession::AsyncReadHead(int total_len)
 {
 	auto self = shared_from_this();
+	// 异步读取固定长度的消息头（HEAD_TOTAL_LEN）
 	asyncReadFull(HEAD_TOTAL_LEN, [self, this](const boost::system::error_code& ec, std::size_t bytes_transfered) {
 		try {
+			// 1. 网络错误处理：若读取失败，关闭连接并从服务器中移除该会话
 			if (ec) {
 				std::cout << "handle read failed, error is " << ec.what() << endl;
 				Close();
 				_server->ClearSession(_session_id);
 				return;
 			}
-
+			// 2. 字节数校验：确保读取到的字节数符合预期
 			if (bytes_transfered < HEAD_TOTAL_LEN) {
 				std::cout << "read length not match, read [" << bytes_transfered << "] , total ["
 					<< HEAD_TOTAL_LEN << "]" << endl;
@@ -136,35 +138,33 @@ void CSession::AsyncReadHead(int total_len)
 				_server->ClearSession(_session_id);
 				return;
 			}
-
+			// 3. 数据拷贝：将底层缓冲区数据存入消息头节点
 			_recv_head_node->Clear();
 			memcpy(_recv_head_node->_data, _data, bytes_transfered);
-
-			//获取头部MSGID数据
+			// 4. 解析消息ID：从头部提取ID，并进行网络字节序转主机字节序
 			short msg_id = 0;
 			memcpy(&msg_id, _recv_head_node->_data, HEAD_ID_LEN);
-			//网络字节序转化为本地字节序
 			msg_id = boost::asio::detail::socket_ops::network_to_host_short(msg_id);
 			std::cout << "msg_id is " << msg_id << endl;
-			//id非法
+			// 校验ID合法性
 			if (msg_id > MAX_LENGTH) {
 				std::cout << "invalid msg_id is " << msg_id << endl;
 				_server->ClearSession(_session_id);
 				return;
 			}
+			// 5. 解析消息体长度：提取长度字段，同样转换字节序
 			short msg_len = 0;
 			memcpy(&msg_len, _recv_head_node->_data + HEAD_ID_LEN, HEAD_DATA_LEN);
-			//网络字节序转化为本地字节序
 			msg_len = boost::asio::detail::socket_ops::network_to_host_short(msg_len);
 			std::cout << "msg_len is " << msg_len << endl;
 
-			//id非法
+			// 校验长度合法性
 			if (msg_len > MAX_LENGTH) {
 				std::cout << "invalid data length is " << msg_len << endl;
 				_server->ClearSession(_session_id);
 				return;
 			}
-
+			// 6. 构造消息体节点并进入下一步：异步读取消息体
 			_recv_msg_node = make_shared<RecvNode>(msg_len, msg_id);
 			AsyncReadBody(msg_len);
 		}

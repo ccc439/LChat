@@ -1,8 +1,9 @@
-#pragma once
+Ôªø#pragma once
 #include <vector>
 #include <boost/asio.hpp>
 #include "Singleton.h"
 #include <boost/asio/executor_work_guard.hpp>
+#include <atomic>
 
 class AsioIOServicePool :public Singleton<AsioIOServicePool>
 {
@@ -14,13 +15,12 @@ public:
     ~AsioIOServicePool();
     AsioIOServicePool(const AsioIOServicePool&) = delete;
     AsioIOServicePool& operator=(const AsioIOServicePool&) = delete;
-    //  π”√ round-robin µƒ∑Ω Ω∑µªÿ“ª∏ˆ io_service
     boost::asio::io_context& GetIOService();
     void Stop();
 private:
-    AsioIOServicePool(std::size_t size = 2/*std::thread::hardware_concurrency()*/);
+    AsioIOServicePool(std::size_t size = std::max<size_t>(8, std::thread::hardware_concurrency() * 2));
     std::vector<IOService> _ioServices;
     std::vector<WorkGuardPtr> _workGuards;
     std::vector<std::thread> _threads;
-    std::size_t     _nextIOService;
+    std::atomic<std::size_t> _nextIOService;//Êó†ÈîÅ‰ºòÂåñ
 };

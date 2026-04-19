@@ -1,5 +1,6 @@
-#include "AsioIOServicePool.h"
+ï»¿#include "AsioIOServicePool.h"
 #include <iostream>
+#include <thread>
 using namespace std;
 AsioIOServicePool::AsioIOServicePool(std::size_t size) :_ioServices(size),
 _workGuards(size), _nextIOService(0) {
@@ -9,7 +10,6 @@ _workGuards(size), _nextIOService(0) {
         );
     }
 
-    //±éÀú¶à¸öioservice£¬´´½¨¶à¸öÏß³Ì£¬Ã¿¸öÏß³ÌÄÚ²¿Æô¶¯ioservice
     for (std::size_t i = 0; i < _ioServices.size(); ++i) {
         _threads.emplace_back([this, i]() {
             _ioServices[i].run();
@@ -22,12 +22,11 @@ AsioIOServicePool::~AsioIOServicePool() {
     std::cout << "AsioIOServicePool destruct" << endl;
 }
 
+// æ— é”ç«žäº‰ï¼šfetch_add æ˜¯ç¡¬ä»¶çº§åˆ«çš„åŽŸå­æ“ä½œï¼Œæ— éœ€äº’æ–¥é”
 boost::asio::io_context& AsioIOServicePool::GetIOService() {
-    auto& service = _ioServices[_nextIOService++];
-    if (_nextIOService == _ioServices.size()) {
-        _nextIOService = 0;
-    }
-    return service;
+    std::size_t index = _nextIOService.fetch_add(1, std::memory_order_relaxed);
+    index = index % _ioServices.size();
+    return _ioServices[index];
 }
 
 void AsioIOServicePool::Stop() {
@@ -37,7 +36,6 @@ void AsioIOServicePool::Stop() {
         }
     }
 
-    // µÈ´ýËùÓÐÏß³Ì½áÊø
     for (auto& thread : _threads) {
         if (thread.joinable()) {
             thread.join();

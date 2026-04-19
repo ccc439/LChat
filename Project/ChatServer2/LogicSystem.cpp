@@ -30,15 +30,16 @@ void LogicSystem::PostMsgToQue(shared_ptr < LogicNode> msg) {
 }
 
 void LogicSystem::DealMsg() {
-	for (;;) {
+	for (;;) { // 无限循环，保持后台处理线程持续运行
 		std::unique_lock<std::mutex> unique_lk(_mutex);
-		//判断队列为空则用条件变量阻塞等待，并释放锁
+		// 1. 阻塞等待：队列为空且系统未停止时，释放锁并进入休眠
 		while (_msg_que.empty() && !_b_stop) {
 			_consume.wait(unique_lk);
 		}
 
-		//判断是否为关闭状态，把所有逻辑执行完后则退出循环
+		// 2. 退出处理：当系统发出停止信号 (_b_stop 为 true)
 		if (_b_stop) {
+			// 确保退出前处理完队列中剩余的所有消息（优雅关闭）
 			while (!_msg_que.empty()) {
 				auto msg_node = _msg_que.front();
 				cout << "recv_msg id  is " << msg_node->_recvnode->_msg_id << endl;
@@ -47,14 +48,15 @@ void LogicSystem::DealMsg() {
 					_msg_que.pop();
 					continue;
 				}
+				// 执行业务逻辑回调
 				call_back_iter->second(msg_node->_session, msg_node->_recvnode->_msg_id,
 					std::string(msg_node->_recvnode->_data, msg_node->_recvnode->_cur_len));
 				_msg_que.pop();
 			}
-			break;
+			break; // 彻底退出循环，结束线程
 		}
 
-		//如果没有停服，且说明队列中有数据
+		// 3. 正常处理：从队列首部提取一条消息
 		auto msg_node = _msg_que.front();
 		cout << "recv_msg id  is " << msg_node->_recvnode->_msg_id << endl;
 		auto call_back_iter = _fun_callbacks.find(msg_node->_recvnode->_msg_id);
@@ -63,9 +65,10 @@ void LogicSystem::DealMsg() {
 			std::cout << "msg id [" << msg_node->_recvnode->_msg_id << "] handler not found" << std::endl;
 			continue;
 		}
+		// 执行业务逻辑回调
 		call_back_iter->second(msg_node->_session, msg_node->_recvnode->_msg_id,
 			std::string(msg_node->_recvnode->_data, msg_node->_recvnode->_cur_len));
-		_msg_que.pop();
+		_msg_que.pop(); // 处理完毕，移除消息
 	}
 }
 
