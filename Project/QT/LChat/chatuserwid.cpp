@@ -17,10 +17,10 @@ ChatUserWid::~ChatUserWid()
 void ChatUserWid::SetInfo(std::shared_ptr<UserInfo> user_info)
 {
     _user_info = user_info;
-    // 加载图片
+    // 閸旂姾娴囬崶鍓у
     QPixmap pixmap(_user_info->_icon);
 
-    // 设置图片自动缩放
+    // 鐠佸墽鐤嗛崶鍓у閼奉亜濮╃紓鈺傛杹
     ui->icon_label->setPixmap(pixmap.scaled(ui->icon_label->size(), Qt::KeepAspectRatio, Qt::SmoothTransformation));
     ui->icon_label->setScaledContents(true);
 
@@ -31,10 +31,10 @@ void ChatUserWid::SetInfo(std::shared_ptr<UserInfo> user_info)
 void ChatUserWid::SetInfo(std::shared_ptr<FriendInfo> friend_info)
 {
     _user_info = std::make_shared<UserInfo>(friend_info);
-    // 加载图片
+    // 閸旂姾娴囬崶鍓у
     QPixmap pixmap(_user_info->_icon);
 
-    // 设置图片自动缩放
+    // 鐠佸墽鐤嗛崶鍓у閼奉亜濮╃紓鈺傛杹
     ui->icon_label->setPixmap(pixmap.scaled(ui->icon_label->size(), Qt::KeepAspectRatio, Qt::SmoothTransformation));
     ui->icon_label->setScaledContents(true);
 

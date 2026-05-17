@@ -18,7 +18,7 @@ public:
     ~ChatUserWid();
 
     QSize sizeHint() const override {
-        return QSize(250, 70); // 返回自定义的尺寸
+        return QSize(250, 70); // 鏉╂柨娲栭懛顏勭暰娑斿娈戠亸鍝勵嚟
     }
 
     void SetInfo(std::shared_ptr<UserInfo> user_info);

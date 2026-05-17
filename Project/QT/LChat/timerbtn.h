@@ -9,7 +9,7 @@ public:
     TimerBtn(QWidget *parent = nullptr);
     ~ TimerBtn();
 
-    // 重写mouseReleaseEvent，鼠标左键释放时触发
+    // 閲嶅啓mouseReleaseEvent锛岄紶鏍囧乏閿噴鏀炬椂瑙﹀彂
     virtual void mouseReleaseEvent(QMouseEvent *e) override;
 private:
     QTimer  *_timer;

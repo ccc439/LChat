@@ -32,11 +32,11 @@ public:
 
 private:
     Ui::MainWindow *ui;
-    LoginDialog * _login_dlg;//登录界面
-    RegisterDialog * _register_dlg;//注册界面
-    ResetDialog * _reset_dlg;//重置密码界面
-    ChatDialog * _chat_dlg;//聊天界面
-    QStackedWidget *_stack;//用堆栈窗口管理_login_dlg和_register_dlg...
+    LoginDialog * _login_dlg;//鐧诲綍鐣岄潰
+    RegisterDialog * _register_dlg;//娉ㄥ唽鐣岄潰
+    ResetDialog * _reset_dlg;//閲嶇疆瀵嗙爜鐣岄潰
+    ChatDialog * _chat_dlg;//鑱婂ぉ鐣岄潰
+    QStackedWidget *_stack;//鐢ㄥ爢鏍堢獥鍙ｇ鐞哶login_dlg鍜宊register_dlg...
 
 public slots:
 };

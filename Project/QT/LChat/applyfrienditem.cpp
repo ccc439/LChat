@@ -20,10 +20,10 @@ ApplyFriendItem::~ApplyFriendItem()
 void ApplyFriendItem::SetInfo(std::shared_ptr<ApplyInfo> apply_info)
 {
     _apply_info = apply_info;
-    // 加载图片
+    // 閸旂姾娴囬崶鍓у
     QPixmap pixmap(_apply_info->_icon);
 
-    // 设置图片自动缩放
+    // 鐠佸墽鐤嗛崶鍓у閼奉亜濮╃紓鈺傛杹
     ui->icon_lb->setPixmap(pixmap.scaled(ui->icon_lb->size(), Qt::KeepAspectRatio, Qt::SmoothTransformation));
     ui->icon_lb->setScaledContents(true);
 

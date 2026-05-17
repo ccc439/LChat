@@ -62,7 +62,7 @@ public:
 			}
 			return !connections_.empty();
 			});
-		//   ֹͣ  ֱ ӷ  ؿ ָ  
+		//   停止  直 臃  乜 指  
 		if (b_stop_) {
 			return  nullptr;
 		}

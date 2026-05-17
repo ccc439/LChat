@@ -17,10 +17,10 @@ public:
     RpcConnPool(size_t poolSize, std::string host, std::string port)
         : poolSize_(poolSize), host_(host), port_(port), b_stop_(false) {
         for (size_t i = 0; i < poolSize_; ++i) {
-            //´´½¨µ½·şÎñÆ÷µÄÍ¨µÀ
+            //åˆ›å»ºåˆ°æœåŠ¡å™¨çš„é€šé“
             std::shared_ptr<Channel> channel = grpc::CreateChannel(host + ":" + port,
                 grpc::InsecureChannelCredentials());
-            //´´½¨·şÎñµÄ´æ¸ù
+            //åˆ›å»ºæœåŠ¡çš„å­˜æ ¹
             connections_.push(VerifyService::NewStub(channel));
         }
     }
@@ -41,7 +41,7 @@ public:
             }
             return !connections_.empty();
             });
-        //Èç¹ûÍ£Ö¹ÔòÖ±½Ó·µ»Ø¿ÕÖ¸Õë
+        //å¦‚æœåœæ­¢åˆ™ç›´æ¥è¿”å›ç©ºæŒ‡é’ˆ
         if (b_stop_) {
             return  nullptr;
         }
