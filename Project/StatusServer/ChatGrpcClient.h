@@ -5,6 +5,7 @@
 #include <grpcpp/grpcpp.h> 
 #include "message.grpc.pb.h"
 #include "message.pb.h"
+#include <condition_variable>
 
 using grpc::Channel;
 using grpc::Status;
@@ -47,7 +48,7 @@ public:
 			}
 			return !connections_.empty();
 			});
-		//如果停止则直接返回空指针
+		//   停止  直 臃  乜 指  
 		if (b_stop_) {
 			return  nullptr;
 		}
