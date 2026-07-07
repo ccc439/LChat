@@ -1,0 +1,92 @@
+# Qt 构建产物和中间文件
+build/
+bin/
+*.o
+*.obj
+Makefile*
+*.a
+*.so
+*.dll
+*.exe
+*.dylib
+
+# Qt Creator IDE 配置
+.qtcreator/
+*.pro.user
+*.pro.user.*
+
+# Qt MOC、UIC、RCC 生成的文件
+moc_*.cpp
+ui_*.h
+qrc_*.cpp
+
+# Qt 调试和日志
+*.log
+debug/
+release/
+
+# 项目配置文件（包含敏感信息或本地配置）
+*.ini
+config.ini
+*.conf
+*.cfg
+
+# CMake 构建目录
+CMakeCache.txt
+CMakeFiles/
+cmake_install.cmake
+install_manifest.txt
+
+# Windows 系统文件
+Thumbs.db
+Desktop.ini
+$RECYCLE.BIN/
+System Volume Information/
+
+# macOS 系统文件
+.DS_Store
+.AppleDouble
+.LSOverride
+
+# Linux 系统文件
+*~
+.directory
+
+# 临时文件和备份
+*.bak
+*.swp
+*.swo
+*~
+
+# 编译输出目录
+out/
+Out/
+OUTPUT/
+
+# Qt LChat 特定配置（可选，如果需要保留 config.ini 则注释掉）
+# config.ini
+
+# SQL 备份目录
+sql备份/
+
+# Qt 框架目录（这些不应该提交到 Git，太大且可以通过安装 Qt 获得）
+Qt/6.*/
+Qt/Docs/
+Qt/Examples/
+Qt/Tools/
+Qt/Licenses/
+Qt/dist/
+Qt/installerResources/
+Qt/vcredist/
+Qt/*.txt
+Qt/*.xml
+Qt/*.dat
+Qt/*.exe
+Qt/MaintenanceTool*
+Qt/licenseInfo.txt
+Qt/network.xml
+Qt/components.xml
+Qt/installer.dat
+
+# 只保留 LChat 项目源代码
+# Qt/LChat/ 目录下的源码应该被追踪
