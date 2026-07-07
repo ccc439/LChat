@@ -72,6 +72,11 @@ TcpMgr::TcpMgr():_host(""),_port(0),_b_recv_pending(false),_message_id(0),_messa
     // 处理连接断开
     QObject::connect(&_socket, &QTcpSocket::disconnected, [&]() {
         qDebug() << "Disconnected from server.";
+        // 清空接收缓冲区，避免重连后与旧数据混淆
+        _buffer.clear();
+        _b_recv_pending = false;
+        _message_id = 0;
+        _message_len = 0;
     });
 
     QObject::connect(this, &TcpMgr::sig_send_data, this, &TcpMgr::slot_send_data);
@@ -177,6 +182,14 @@ void TcpMgr::initHandlers()
             emit sig_friend_list_updated();
         } else {
             qDebug() << "No friend_list field in response";
+        }
+
+        // 加载聊天历史消息
+        if (jsonObj.contains("chat_history")) {
+            qDebug() << "Found chat_history in login response";
+            UserMgr::getInstance()->LoadChatHistory(jsonObj["chat_history"].toArray());
+        } else {
+            qDebug() << "No chat_history field in response";
         }
 
         //切换到聊天界面

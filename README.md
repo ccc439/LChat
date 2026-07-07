@@ -1,0 +1,1 @@
+这是全栈即时通讯项目的QT源码（Windows环境）。查看服务器源码（Linux环境）请移步[ccc439/LChat_linux_servers](https://github.com/ccc439/LChat_linux_servers)。

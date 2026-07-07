@@ -378,8 +378,12 @@ void ChatDialog::SetSelectChatPage(int uid)
             return;
         }
 
-        //设置信息
+        //设置信息，并同步最新的聊天历史消息
         auto user_info = con_item->GetUserInfo();
+        auto friend_info = UserMgr::getInstance()->GetFriendById(user_info->_uid);
+        if (friend_info) {
+            user_info->_chat_msgs = friend_info->_chat_msgs;
+        }
         ui->chat_page->SetUserInfo(user_info);
         return;
     }
@@ -410,8 +414,12 @@ void ChatDialog::SetSelectChatPage(int uid)
             return;
         }
 
-        //设置信息
+        //设置信息，并同步最新的聊天历史消息
         auto user_info = con_item->GetUserInfo();
+        auto friend_info = UserMgr::getInstance()->GetFriendById(uid);
+        if (friend_info) {
+            user_info->_chat_msgs = friend_info->_chat_msgs;
+        }
         ui->chat_page->SetUserInfo(user_info);
 
         return;
@@ -602,6 +610,11 @@ void ChatDialog::slot_item_clicked(QListWidgetItem *item)
 
         auto chat_wid = qobject_cast<ChatUserWid*>(customItem);
         auto user_info = chat_wid->GetUserInfo();
+        //同步最新的聊天历史消息
+        auto friend_info = UserMgr::getInstance()->GetFriendById(user_info->_uid);
+        if (friend_info) {
+            user_info->_chat_msgs = friend_info->_chat_msgs;
+        }
         //跳转到聊天界面
         ui->chat_page->SetUserInfo(user_info);
         _cur_chat_uid = user_info->_uid;

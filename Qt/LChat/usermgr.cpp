@@ -249,4 +249,36 @@ void UserMgr::AppendFriendChatMsg(int friend_id,std::vector<std::shared_ptr<Text
     find_iter.value()->AppendChatMsgs(msgs);
 }
 
+void UserMgr::LoadChatHistory(QJsonArray chat_history)
+{
+    qDebug() << "LoadChatHistory called, array size:" << chat_history.size();
+    for (const QJsonValue& val : chat_history) {
+        QJsonObject thread_obj = val.toObject();
+        int peer_uid = thread_obj["peer_uid"].toInt();
+        QJsonArray messages = thread_obj["messages"].toArray();
+
+        qDebug() << "Loading history with peer_uid:" << peer_uid << "message count:" << messages.size();
+
+        std::vector<std::shared_ptr<TextChatData>> msg_vec;
+        for (const QJsonValue& msg_val : messages) {
+            QJsonObject msg_obj = msg_val.toObject();
+            QString msg_id = msg_obj["msgid"].toString();
+            QString content = msg_obj["content"].toString();
+            int from_uid = msg_obj["fromuid"].toInt();
+            int to_uid = msg_obj["touid"].toInt();
+            auto msg_ptr = std::make_shared<TextChatData>(msg_id, content, from_uid, to_uid);
+            msg_vec.push_back(msg_ptr);
+        }
+
+        // 存储到对应好友的聊天记录中
+        auto find_iter = _friend_map.find(peer_uid);
+        if (find_iter != _friend_map.end()) {
+            find_iter.value()->AppendChatMsgs(msg_vec);
+            qDebug() << "Appended" << msg_vec.size() << "history messages for friend" << peer_uid;
+        } else {
+            qDebug() << "Friend" << peer_uid << "not found in friend map for history loading";
+        }
+    }
+}
+
 
