@@ -63,30 +63,4 @@ out/
 Out/
 OUTPUT/
 
-# Qt LChat 特定配置（可选，如果需要保留 config.ini 则注释掉）
-# config.ini
-
-# SQL 备份目录
-sql备份/
-
-# Qt 框架目录（这些不应该提交到 Git，太大且可以通过安装 Qt 获得）
-Qt/6.*/
-Qt/Docs/
-Qt/Examples/
-Qt/Tools/
-Qt/Licenses/
-Qt/dist/
-Qt/installerResources/
-Qt/vcredist/
-Qt/*.txt
-Qt/*.xml
-Qt/*.dat
-Qt/*.exe
-Qt/MaintenanceTool*
-Qt/licenseInfo.txt
-Qt/network.xml
-Qt/components.xml
-Qt/installer.dat
-
-# 只保留 LChat 项目源代码
 # Qt/LChat/ 目录下的源码应该被追踪
