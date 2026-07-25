@@ -63,4 +63,9 @@ out/
 Out/
 OUTPUT/
 
+# 打包输出目录和项目文件
+LChat_Package/
+LChat_pack.evb
+*.evb
+
 # Qt/LChat/ 目录下的源码应该被追踪
